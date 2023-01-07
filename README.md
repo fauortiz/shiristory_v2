@@ -40,8 +40,8 @@ First, ensure you have `git`, `python3`, and `npm` installed.
 Navigate to where you want to place this project and clone this git repository there, as below:
 
 ```
-$ git clone https://github.com/me50/fauortiz.git
-$ cd fauortiz
+$ git clone https://github.com/fauortiz/shiristory_v2.git
+$ cd shiristory_v2
 ```
 
 While this is a Django project, the view containing the game itself was built using React. The Django project has been configured to detect the React app as one of its views. Proceed with the instructions below to install dependencies and create a production build for this React app:
