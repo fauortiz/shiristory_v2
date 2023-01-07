@@ -1,0 +1,100 @@
+.header {
+    font-size: 1.2em;
+    padding-top: 0.5em;
+}
+.message {
+    color: grey;
+    font-style: italic;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+input.text {
+    border: none;
+    border-radius: 1.5em;
+    padding: 0.4em 1em;
+}
+
+
+input.submit {
+    border: none;
+    border-radius: 1.5em;
+    padding: 0.5em 1em;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-family: 'Capriola';
+    margin-top: 0.65em;
+    background-color: #23363e;
+    color: white;
+
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+		 -moz-user-select: none; /* Old versions of Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+			  user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+input.submit:hover, input.submit:active {
+    background-color: #4c315e;
+    text-shadow: 0 0 0.5em rgb(255 0 179), 0 0 0.5em rgb(255 0 179);
+    transition: background-color 0.7s ease-in-out, transform 0.25s cubic-bezier(0.68, -2.0, 0.27, 3.00), text-shadow 0.25s ease-in-out;
+}
+input.submit:hover {
+    transform: scale(1.1);
+}
+input.submit:active {
+    transform: scale(0.9);
+}
+
+
+.link {
+    /* color: #23363e; */
+    color: #4babd3;
+    text-decoration: none;
+}
+.link:active, .link:hover {
+    /* color: #4c315e; */
+    color: #b678df;
+    transition: color 0.3s ease-in-out;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+.notice {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    background-color: #453851;
+    background-color: #111111;
+    background-color: #242340;
+    padding: 0.5em;
+    border-radius: 1em;
+    font-size: 0.9rem;
+    font-family: 'Arial';
+}
+.notice-header {
+    font-size: 1rem;
+    font-family: 'Capriola';
+    font-weight: bold;
+    color: rgb(255, 213, 0);
+}
+.simple-font {
+    font-family: 'Arial';
+    font-weight: bold;
+}
+.emphasis {
+    /* font-style: italic; */
+    text-decoration: underline;
+    font-weight: bold;
+}

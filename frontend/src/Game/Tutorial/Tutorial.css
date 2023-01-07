@@ -1,0 +1,86 @@
+.tutorial {
+    height: auto;
+    width: min(95vw, 450px);
+
+    margin-top: 3.5em;
+
+    /* background-color: #11013ae3; */
+    background-color: rgb(26 30 37);
+    color: white;
+    font-family: "Capriola";
+    border-radius: 1.5rem;
+    padding: 0.75rem;
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+}
+.tutorial.compact {
+    margin-top: 0.5em;
+}
+
+.tutorial-header {
+    text-emphasis: bold;
+}
+.shiristory-logo {
+    font-family: 'Salbabida', sans-serif;
+    font-size: 3rem;
+    margin: 0.15rem 0;
+    animation: words-idle 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.tutorial-rules {
+    margin-bottom: 0.75rem;
+    text-align: left;
+    margin-left: 1rem;
+}
+.tutorial-rules .yellow {
+    color: rgb(216, 193, 60);
+}
+.tutorial-small {
+    font-size: 0.9em;
+}
+.tutorial-tips {
+    color: grey;
+    font-style: italic;
+}
+.tutorial-highlight {
+    color: #00e7ff;
+}
+.tutorial-page {
+    display: none;
+}
+.tutorial-page.show {
+    display: block;
+}
+
+.button-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.bouncy-button.close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 801;
+    padding: 0.5em 0.9em;
+}
+.line-break {
+    height: 1.75rem;
+}
+@keyframes words-idle {
+    0%, 50%, 100% { transform: translate(0px, 2.5px) rotate(0deg); }
+    25% { transform: translate(0px, -2.5px) rotate(0.5deg); }
+    75% { transform: translate(0px, -2.5px) rotate(-0.5deg); }
+}
+
+.bouncy-button.small {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}

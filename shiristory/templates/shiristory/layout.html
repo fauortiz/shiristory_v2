@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Webfonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Capriola&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="shiristory.herokuapp.com" />
+        
+        <title>{% block title %}SHIRISTORY{% endblock %}</title>
+
+        <!-- favicon tags -->
+        <link rel="shortcut icon" href="{% static 'shiristory/favicon/favicon.ico' %}"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'shiristory/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'shiristory/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'shiristory/favicon/favicon-16x16.png' %}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{% static 'shiristory/favicon/android-chrome-192x192.png' %}">
+        <link rel="icon" type="image/png" sizes="512x512" href="{% static 'shiristory/favicon/android-chrome-512x512.png' %}">
+        <link rel="manifest" href="{% static 'shiristory/favicon/manifest.json' %}" />
+        
+        <link rel="stylesheet" href="{% static 'shiristory/layout.css' %}">
+        <link rel="stylesheet" href="{% static 'shiristory/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'shiristory/main.css' %}">
+        <link rel="stylesheet" href="{% static 'shiristory/auth.css' %}">
+        <link rel="stylesheet" href="{% static 'shiristory/profile.css' %}">
+        
+        <script defer src="{% static 'shiristory/navbar.js' %}"></script>
+        {% block script %}
+        {% endblock %}
+    </script>
+
+    </head>
+    <body>
+    <div id="root">
+    <div id='stars1' class="stars"></div>
+    <div id='stars2' class="stars"></div>
+    <div id='stars3' class="stars"></div>
+    <div class="app">
+
+        <nav class="navbar">
+            <div class="navbar-spacer"></div>
+
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <div class="navbar-logo">SHIRISTORY</div>
+                <div class="navbar-demo">demo version</div>
+            </a>
+
+            <div class="navbar-menu">
+                {% if user.is_authenticated %}
+                    <div class="navbar-button navbar-authenticated menu-toggler navbar-big-button">
+                        <span class="navbar-username"><span>{{ user.username }}</span></span>
+                        <div class="navbar-unpacked-2">👤</div>
+                        <div class="navbar-packed-2">{{ user.username|slice:":1"|title }}</div>
+                    </div>
+                {% else %}
+                    <a class="navbar-button navbar-unpacked" href="{% url 'index' %}"><div>Play</div></a>
+                    <a class="navbar-button navbar-unpacked" href="{% url 'login' %}"><div>Log In</div></a>
+                    <a class="navbar-button navbar-unpacked" href="{% url 'register' %}"><div>Register</div></a>
+                    <div class="navbar-button navbar-unpack menu-toggler"><div>👤</div></div>
+                {% endif %}
+            </div>
+        </nav>
+
+        <div class="navbar-game">
+            <div class="menu-game hide">
+                {% if user.is_authenticated %}
+                    <div class='menu-info'><span>{{ user.username }}</span></div>
+                    <a class='menu-link' href="{% url 'index' %}"><div>Play</div></a>
+                    <a class='menu-link' href="{% url 'profile' user.id %}"><div>Profile</div></a>
+                    <a class='menu-link' href="{% url 'logout' %}"><div>Log Out</div></a>
+                {% else %}
+                    <a class='menu-link' href="{% url 'index' %}"><div>Play</div></a>
+                    <a class='menu-link' href="{% url 'login' %}"><div>Log In</div></a>
+                    <a class='menu-link' href="{% url 'register' %}"><div>Register</div></a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="navbar-game-closer menu-toggler"></div>
+
+        <div class="main">
+            {% block body %}
+            {% endblock %}
+        </div>
+        
+    </div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+/* slider css based on code from w3schools */
+.volume-area {
+  /* outline: green solid 1px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  padding: 0.3rem;
+  background-color: #3e3e3e45;
+  border-radius: 10.5px;
+
+  transition: all 0.1s ease-in-out;
+  top: -2rem;
+}
+.volume-area.show {
+  transition: all 0.1s ease-in-out;
+  top: 0.4rem;
+}
+
+
+.volume-section {
+  /* outline: red solid 1px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slider-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5em;
+}
+.volume-slider {
+  -webkit-appearance: none;
+  width: 70%;
+  height: 0.5em;
+  border-radius: 0.5em;
+  background: #70707083;
+  outline: none;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  background: #e7e7e7;
+  cursor: pointer;
+}
+.volume-slider::-moz-range-thumb {
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  background: #dddddd;
+  cursor: pointer;
+}

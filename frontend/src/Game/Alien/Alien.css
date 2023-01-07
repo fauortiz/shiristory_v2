@@ -1,0 +1,114 @@
+.alien-area {
+    /* outline: red solid 2px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: min(95%, 657px); */
+    width: 100%;
+
+    /* for absolute positioning of .prompt */
+    position: relative; 
+}
+.alien-area-zbounce-1 { animation: alien-zbounce-1 0.1s; }
+.alien-area-zbounce-2 { animation: alien-zbounce-2 0.1s; }
+@keyframes alien-zbounce-1 {
+    0% { transform: scale(1,1) }
+    33% { transform: scale(1.1,1.1) }
+    100% { transform: scale(1,1) }
+}
+@keyframes alien-zbounce-2 {
+    0% { transform: scale(1,1) }
+    33% { transform: scale(1.1,1.1) }
+    100% { transform: scale(1,1) }
+}
+
+.alien-container {
+    /* outline: orange solid 2px; */
+    width: clamp(175px, 50%, 268px);
+    animation: alien-idle 10s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite;
+    /* height: 80%; */
+
+    /* for portal? */
+    /* position: relative; */
+}
+.alien-container-compact {
+    width: clamp(87.5px, 25%, 134px);
+}
+@keyframes alien-idle {
+    0%, 50%, 100% { transform: translate(0px, 5px) rotate(0deg); }
+    25% { transform: translate(0px, -5px) rotate(1.5deg); }
+    75% { transform: translate(0px, -5px) rotate(-1.5deg); }
+}
+
+/* .portal {
+    position: absolute;
+    top: -44%;
+    left: -59%;
+    z-index: -1;
+    transform: scale(60%, 60%);
+    outline: yellow solid 2px;
+}
+.a1 {
+    opacity: 0;
+    animation: portal-absorb-1 1s;
+}
+.a2 {
+    opacity: 0;
+    animation: portal-absorb-2 1s;
+}
+@keyframes portal-absorb-1 {
+    0% {opacity: 1}
+    100% {transform: scale(0%, 0%) rotate(360deg);}
+}
+@keyframes portal-absorb-2 {
+    0% {opacity: 1}
+    100% {transform: scale(0%, 0%) rotate(360deg);}
+} */
+
+.alien-sizer {
+    /* outline: white solid 2px; */
+    padding-top: 100%;
+    position: relative;
+}
+.alien-sizer > * {
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    color: #112f5a;
+}
+.alien {
+    /* outline: yellow solid 2px; */
+    width: 100%;
+    object-fit: scale-down;
+    display: none;
+}
+.alien.active {
+    display: inline-block;
+    animation: alien-ybounce 0.3s;
+}
+@keyframes alien-ybounce {
+    0%, 100% { transform: translate(0px, 0px) }
+    40% { transform: translate(0px, -20px) }
+}
+
+.prompt {
+  /* outline: green solid 2px; */
+    position: absolute;
+    bottom: 2%;  
+    animation: prompt-idle 8s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite;
+    /* background-color: rgb(31 23 90 / 0%); */
+    /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(252,70,107,0) 100%); */
+    background-color: rgb(00 00 00 / 20%);
+    box-shadow: rgb(0 0 0) 0px 5px 12px;
+    color: white;
+    padding: 0.5em;
+    border-radius: 3em;
+    font-size: 1.2em;
+}
+.prompt span {
+    color: rgb(216, 193, 60);
+}
+@keyframes prompt-idle {
+    0%, 50%, 100% { transform: translate(0px, 3px); }
+    25%, 75% { transform: translate(0px, -3px); }
+}

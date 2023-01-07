@@ -1,0 +1,41 @@
+{% extends "shiristory/layout.html" %}
+
+{% block body %}
+<div class="inner-main">
+    <div class="header">Register</div>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+
+    <form class="form" action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <input class="text" autofocus type="text" name="username" placeholder="Username" maxlength="16">
+        </div>
+        <div>
+        <!-- <div style="display:none;"> -->
+            <input class="text" type="password" name="password" placeholder="Password">
+        </div>
+        <div>
+        <!-- <div style="display:none;"> -->
+            <input class="text" type="password" name="confirmation" placeholder="Confirm Password">
+        </div>
+        <div>
+            <input class="submit" type="submit" value="Register">
+        </div>
+    </form>
+
+    <!-- <div class="notice">
+        <div class="notice-header">NOTICE</div>
+        <div class="emphasis">The player database resets after a period of inactivity.</div>
+        <div>When you create an account, this demo will not save your data long-term.</div>
+        <div>You may also opt to play on these sample accounts:</div>
+        <div class="notice">
+            <div>usernames: <span class="simple-font">doorplays, jiggsywinky, leafkor, Terra</span></div>
+            <div>password: <span class="simple-font">shiristory</span></div>
+        </div>
+        <div>You can <a class="link" href="{% url 'login' %}">log in here</a></div>
+    </div> -->
+</div>
+{% endblock %}

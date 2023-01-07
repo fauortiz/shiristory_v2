@@ -1,0 +1,42 @@
+{% extends "shiristory/layout.html" %}
+{% load static %}
+
+{% block script %} 
+    <script defer src="{% static 'shiristory/leaderboard.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="inner-main profile-inner-main">
+
+    <div class="leaderboards-container">
+        <div class="leaderboards-flex">
+            <div class="leaderboard">
+                <div class="leaderboard-header">Most Dust Collected</div>
+
+                {% for game in dust_leaderboard %}
+                    <div class="leaderboard-item">
+                        <a class="leaderboard-link" href="{% url 'profile' game.player.id %}">
+                            <div class="truncate">{{ game.player.username}}</div>
+                        </a>
+                        <div>{{game.points}}💠</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="leaderboard">
+                <div class="leaderboard-header">Most Creatures Helped</div>
+                
+                {% for game in helped_leaderboard %}
+                    <div class="leaderboard-item">
+                        <a class="leaderboard-link" href="{% url 'profile' game.player.id %}">
+                            <div class="truncate">{{ game.player.username}}</div>
+                        </a>
+                        <div>{{game.helped}}👾</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

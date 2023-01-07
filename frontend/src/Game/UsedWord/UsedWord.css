@@ -1,0 +1,20 @@
+.word {
+    animation: 0.1s scored-word-drop cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+@keyframes scored-word-drop {
+    0% {transform: translate(0px, -100px);}
+    100% {transform: translate(0px, 0px);}
+}
+
+.word-color-0 {color: rgb(205 85 226);}
+.word-color-1 {color: rgb(13, 148, 197);}
+.word-color-2 {color: rgb(122 80 249);}
+.word-color-10 {
+    /* color: rgb(255, 213, 0); */
+    text-shadow: 0 0 0.5em rgb(255 0 179), 0 0 0.5em rgb(255 0 179), 0 0 0.5em rgb(255 0 179);
+    color: rgb(255 255 255);
+}
+.word-size-0 {font-size: 0.7em;}
+.word-size-1 {font-size: 0.9em;}
+.word-size-2 {font-size: 1.1em;}
+.word-size-3 {font-size: 1.3em;}

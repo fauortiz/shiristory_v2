@@ -1,0 +1,188 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 0.5rem; */
+    z-index: 999;
+    background-color: #0d0423;
+    /* background-color: #005d69; */
+    width: 100%;
+    height: 2.5rem;
+    color: white;
+    font-family: 'Capriola', sans-serif;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.navbar-spacer {
+    display: none;
+    flex: 1;
+}
+
+
+.navbar-brand {
+    color: white;
+    text-decoration: none;
+    height: 100%;
+    gap: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.25rem;
+}
+.navbar-logo {
+    font-family: 'Salbabida', sans-serif;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar-demo {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.navbar-brand:active, .navbar-brand:hover {
+    /* text-shadow: 0 0 0.5em rgba(255, 0, 179, 1);
+    background-color: #13082e;
+    transition: text-shadow 0.15s ease-in-out, background-color 1s ease-in-out; */
+    text-shadow: 0 0 0.5em rgb(255 0 179), 0 0 0.5em rgb(255 0 179 / 16%);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+
+.navbar-menu {
+    flex: 1;
+    display: flex;
+    justify-content:flex-end;
+}
+
+.navbar-button {
+    cursor: pointer;
+    height: 2.5rem;
+    width: min(100%, 2.5rem);
+
+    transition: transform 0.25s cubic-bezier(0.68, -2.0, 0.27, 3.00), text-shadow 0.25s ease-in-out;
+}
+.navbar-button div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+.navbar-button:active, .navbar-button:hover {
+    text-shadow: 0 0 1.25em rgb(255 0 246), 0 0 1.25em rgb(255 0 246);
+}
+.navbar-button:hover {
+    transform: scale(1.1);
+}
+.navbar-button:active {
+    transform: scale(0.9);
+}
+
+
+
+
+.navbar-username {
+    height: 2.5rem;
+    /* display: flex; */
+    display: none;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-size: initial;
+    padding-left: 0.5rem;
+}
+.navbar-username div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0.25rem;
+}
+
+
+
+.navbar-unpacked {
+    display: none;
+}
+.navbar-button .navbar-unpacked-2 {
+    display: none;
+}
+
+/* show 'navbar-demo' */
+@media (min-width: 444px) { 
+    .navbar-demo {
+        display: flex;
+    }
+}
+/* show 'navbar-username */
+@media (min-width: 767px) { 
+    .navbar-authenticated {
+        display: flex;
+        width: auto;
+    }
+    .navbar-authenticated > div {
+        width: 2.5rem;
+    }
+    .navbar-username {
+        display: flex;
+        height: 2.5rem;
+        align-items: center;
+    }
+    
+    .navbar-unpack {
+        display: none;
+    }
+    
+    .navbar-unpacked {
+        display: block;
+        width: auto;
+        padding: 0 0.5rem;
+        color: white;
+        text-decoration: none;
+    }
+    .navbar-unpacked > div {
+        font-size: 0.9rem;
+    }
+
+    .navbar-button .navbar-unpacked-2 {
+        display: flex;
+    }
+    .navbar-button .navbar-packed-2 {
+        display: none;
+    }
+}
+/* center 'navbar-logo' */
+@media (min-width: 1131px) { 
+    .navbar-spacer {
+        display: initial;
+    }
+}
+
+/* special case for that wonky button */
+.navbar-big-button div {
+    transition: transform 0.25s cubic-bezier(0.68, -2.0, 0.27, 3.00);
+}
+.navbar-big-button, .navbar-big-button span {
+    transition: transform 0.25s linear;
+}
+.navbar-big-button:hover, .navbar-big-button:active {
+    transform: scale(1);
+}
+.navbar-big-button:hover div {
+    transform: scale(1.1);
+}
+.navbar-big-button:active div {
+    transform: scale(0.9);
+}

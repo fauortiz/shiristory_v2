@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- PACE -->
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+
+    <!-- Webfonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Capriola&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+    <!-- create-react-app defaults -->
+    <meta name="description" content="shiristory.herokuapp.com" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'shiristory/favicon/favicon.ico' %}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'shiristory/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'shiristory/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'shiristory/favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'shiristory/favicon/android-chrome-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'shiristory/favicon/android-chrome-512x512.png' %}">
+    <link rel="manifest" href="{% static 'shiristory/favicon/manifest.json' %}" />
+
+    <title>SHIRISTORY</title>
+    
+    <script defer> 
+    // console.log('django templating -> react data transfer!');
+      window.django = {
+        isAuthenticated: JSON.parse("{{ user.is_authenticated }}".toLowerCase()),
+
+        indexURL: "{% url 'index' %}",
+        wordlistURL: "{% url 'wordlist' %}",
+        loginURL: "{% url 'login' %}",
+        registerURL: "{% url 'register' %}",
+        logoutURL: "{% url 'logout' %}",
+        settingsURL: "{% url 'settings' %}",
+        gamesaveURL: "{% url 'gamesave' %}",
+        leaderboardURL: "{% url 'leaderboard' %}"
+      }
+
+      {% if user.is_authenticated %}
+
+        window.django.profileURL = "{% url 'profile' user.id %}";
+
+        window.djangoProfile = {
+          id: "{{ user.id }}",
+          username: "{{ user.username }}",
+          sfxVolume: "{{ user.sfx_volume }}",
+          musicVolume: "{{ user.music_volume }}",
+          level: "{{ user.level }}",
+          wildcards: ["{{ user.wildcard1 }}", "{{ user.wildcard2 }}", "{{ user.wildcard3 }}"],
+          extender: "{{ user.extender }}"
+        }
+
+        // console.log(`${window.djangoProfile.username} is logged in!`)
+
+      {% else %}
+
+        window.django.profileURL = ""
+
+        window.djangoProfile = {
+          id: "",
+          username: "",
+          sfxVolume: 5,
+          musicVolume: 5,
+          level: 1,
+          wildcards: ["","",""],
+          extender: ""
+        }
+      {% endif %}
+
+      Object.freeze(window.django)
+      Object.freeze(window.djangoProfile)
+      Object.freeze(window.djangoProfile.wildcards)
+
+      // console.log('django templating -> react data transfer complete!');
+    </script>
+
+    <!-- <script defer> console.log('react-only data passing placeholder runs (dev only)!');
+      window.django = {
+        isAuthenticated: false,
+        // isAuthenticated: true,
+        indexURL: "/",
+        wordlistURL: "/",
+        loginURL: "/",
+        registerURL: "/",
+        logoutURL: "/",
+        settingsURL: "/",
+        gamesaveURL: "/",
+        leaderboardURL: "/"
+      }
+      window.django.profileURL = ""
+      window.djangoProfile = {
+        id: "",
+        username: "playerOne",
+        sfxVolume: 4,
+        musicVolume: 0,
+        isCompact: false,
+        level: 4,
+        wildcards: ["","pneumonoultramicroscopicsilicovolcanoconiossis","pneucmonoultramicroscopicsilicovolcanoconiosis"],
+        extender: "pneumonoultramicroscopicsiliqcovolcanoconiosis"
+      }
+      Object.freeze(window.django)
+      Object.freeze(window.djangoProfile)
+      Object.freeze(window.djangoProfile.wildcards)
+      console.log('react-only data passing placeholder runs (dev only) complete!');
+    </script> -->
+
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

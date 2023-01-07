@@ -1,0 +1,22 @@
+.game-info-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    /* background-color: rgb(14 25 59); */
+    padding-top: 0.25em;
+    padding-bottom: 0.4em;
+    padding-left: 1em;
+    padding-right: 1.5em;
+    border-radius: 3em;
+}
+
+.game-numbers-section {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}

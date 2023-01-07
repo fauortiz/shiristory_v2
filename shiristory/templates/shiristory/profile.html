@@ -1,0 +1,284 @@
+{% extends "shiristory/layout.html" %}
+{% load static %}
+
+{% block script %} 
+    <script defer src="{% static 'shiristory/profile.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="inner-main profile-inner-main">
+    
+    <h2>{{ profile_user.username }}</h2>
+
+    {% if request.user.is_authenticated %}
+        <div class="buttons-container">
+            {% if is_owner %}
+                <button class="show-profile submit">Stats</button>
+                <button class="show-attunement submit button-active">Attunement</button>
+                <button class="show-leaderboards submit">Rankings</button>
+            {% else %}
+                <a href="{% url 'profile' request.user.id %}">
+                    <button class="submit">Return to Your Profile</button>
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+
+
+
+
+
+
+    {% if is_owner %}
+    <div class="attunement-container" {% if is_owner %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+        <div class="attunement-flex">
+            
+            {% if message %}
+                <div class="attunement-message">{{ message }}</div>
+            {% endif %}
+
+            <div class="attunement-dust-container">
+                <div class="attunement-dust-first"><div>Current Dust:</div></div>
+                <div class="attunement-dust-last">{{ profile.points }}💠</div>
+            </div>
+
+            <div class="spells-header">Attunement Level</div>
+            <div class="spells-description">Increases the dust you earn during encounters.</div>
+            <div class="spells-container">
+                <div class="spell-container">
+                    <div class="spell-show-level glow">{{ request.user.level }}</div>
+                    {% if request.user.level == 4 %}
+                        <div class="spell-max-level mild-glow">max level</div>
+                    {% else %}
+                        <form class="spell-form" action="{% url 'level' request.user.level %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" class="submit spell" value="Level up for 💠{{prices.levelup}}">
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="spells-header"><span class="mild-glow">"Refresh"</span> spellwords</div>
+            <div class="spells-description">These spellwords ignore the word chaining rule.</div>
+            <div class="spells-container">
+                {% for spell, word in profile.wildcards.items %}
+                    <div class="spell-container">
+
+                        <div class="view-spell {{ spell }}">
+                            {% if word %}
+                                <div class="spell-input-view glow"><div class="truncate">{{ word }}</div></div>
+                                <button type="button" class="submit view-spell-button {{ spell }}">Reattune</button>
+                            {% else %}
+                                <div class="spell-input-view empty glow">...</div>
+                                <button type="button" class="submit view-spell-button {{ spell }}">Attune</button>
+                            {% endif %}
+                        </div>
+
+                        <div class="edit-spell {{ spell }}">
+                            <form class="spell-form" action="{% url 'level' spell %}" method="POST">
+                                {% csrf_token %}
+                                <div class="spell-input-container">
+                                    <input type="text" name="spellword" class="{{ spell }}" autocomplete="off" spellcheck="false">
+                                </div>
+                                {% if word %}
+                                    <input type="submit" class="submit spell" value="💠-{{prices.reattune}}">
+                                {% else %}
+                                    <input type="submit" class="submit spell" value="💠-{{prices.attune}}">
+                                {% endif %}
+                                <button type="button" class="submit edit-spell-button {{ spell }} cancel">cancel</button>
+                            </form>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="spells-header"><span class="mild-glow">"Attract"</span> spellwords</div>
+            <div class="spells-description">These spellwords extend the encounter.</div>
+            <div class="spells-container">
+                {% for spell, word in profile.extenders.items %}
+                    <div class="spell-container">
+
+                        <div class="view-spell {{ spell }}">
+                            {% if word %}
+                                <div class="spell-input-view glow"><div class="truncate">{{ word }}</div></div>
+                                <button type="button" class="submit view-spell-button {{ spell }}">Reattune</button>
+                            {% else %}
+                                <div class="spell-input-view empty glow">...</div>
+                                <button type="button" class="submit view-spell-button {{ spell }}">Attune</button>
+                            {% endif %}
+                        </div>
+
+                        <div class="edit-spell {{ spell }}">
+                            <form class="spell-form" action="{% url 'level' spell %}" method="POST">
+                                {% csrf_token %}
+                                <div class="spell-input-container">
+                                    <input type="text" name="spellword" class="{{ spell }}" autocomplete="off" spellcheck="false">
+                                </div>
+                                {% if word %}
+                                    <input type="submit" class="submit spell" value="💠-{{prices.reattune}}">
+                                {% else %}
+                                    <input type="submit" class="submit spell" value="💠-{{prices.attune}}">
+                                {% endif %}
+                                <button type="button" class="submit edit-spell-button {{ spell }} cancel">cancel</button>
+                            </form>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+    <div class="profile-container" {% if is_owner %}style="display: none;"{% else %}style="display: block;"{% endif %}>
+        <div class="profile-flex">
+            
+            <div class="full-section">
+                <div class="general-section">
+                    <div class="profile-header">Player Stats</div>
+                    <div class="general-row">
+                        <div class="general-column first level"><div>Attunement Level:</div></div>
+                        <div class="general-column last level glow">{{ profile.level }}</div>
+                    </div>
+                    <div class="general-row dust">
+                        <div class="general-column first dust"><div>Current Dust:</div></div>
+                        <div class="general-column last dust">{{ profile.points }}💠</div>
+                    </div>
+                    <div class="general-row">
+                        <div class="general-column first">Total Dust Collected:</div>
+                        <div class="general-column last">{{ profile.total_points }}💠</div>
+                    </div>
+                    <div class="general-row">
+                        <div class="general-column first">Total Creatures Helped:</div>
+                        <div class="general-column last">{{ profile.helped }}👾</div>
+                    </div>
+                    <div class="general-row">
+                        <div class="general-column first">Longest Chain:</div>
+                        <div class="general-column last">
+                            {% if longest_chain.max_combo__max %}
+                                {{ longest_chain.max_combo__max }} chain
+                            {% else %}
+                                0 chain
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="general-row">
+                        <div class="general-column first">Average Multiplier:</div>
+                        <div class="general-column last">
+                            {% if average_multiplier.ave_multiplier__avg|floatformat:2 %}
+                                {{ average_multiplier.ave_multiplier__avg|floatformat:2 }}x
+                            {% else %}
+                                1x
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-section">
+                <div class="profile-header">Active Spellwords</div>
+                <div class="spellword-header"><span class="mild-glow">"Refresh"</span> spellwords</div>
+                {% for spell, word in profile.wildcards.items %}
+                    {% if word %}
+                        <div class="spellword glow truncate">{{ word }}</div>
+                    {% else %}
+                        <div class="spellword empty">...</div>
+                    {% endif %}
+                {% endfor %}
+                <div class="spellword-header"><span class="mild-glow">"Attract"</span> spellwords</div>
+                {% for spell, word in profile.extenders.items %}
+                    {% if word %}
+                        <div class="spellword glow truncate">{{ word }}</div>
+                    {% else %}
+                        <div class="spellword empty">...</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="full-section">
+                <div class="profile-header">Recent Encounters</div>
+                {% for game in profile_game_history %}
+                    <div class="history-row">
+                        <div class="history-column">{{game.points}}💠</div> 
+                        <div class="history-column helped">{{game.helped}}👾</div>
+                        <div class="history-column chain">{{game.max_combo}} chain </div>
+                        <div class="history-column">{{game.ave_multiplier|floatformat:2}}x</div>
+                    </div>
+                {% empty %}
+                    <div class="profile-section-empty">
+                        No encounters.
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="full-section">
+                <div class="profile-header">Favorite Words</div>
+                <div class="profile-words-container">
+                    {% for word in profile_words %}
+                        <div class="profile-word-container">
+                            <div class="truncate">{{ word.word }}</div>
+                            <div>{{ word.count }}</div>
+                        </div>
+                    {% empty %}
+                        <div class="profile-section-empty">
+                            No words.
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="leaderboards-container">
+        <div class="leaderboards-flex">
+            <div class="leaderboard">
+                <div class="leaderboard-header">Most Dust Collected</div>
+
+                {% for game in dust_leaderboard %}
+                    <div class="leaderboard-item">
+                        <a class="leaderboard-link" href="{% url 'profile' game.player.id %}">
+                            <div class="truncate">{{ game.player.username}}</div>
+                        </a>
+                        <div>{{game.points}}💠</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="leaderboard">
+                <div class="leaderboard-header">Most Creatures Helped</div>
+                
+                {% for game in helped_leaderboard %}
+                    <div class="leaderboard-item">
+                        <a class="leaderboard-link" href="{% url 'profile' game.player.id %}">
+                            <div class="truncate">{{ game.player.username}}</div>
+                        </a>
+                        <div>{{game.helped}}👾</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
