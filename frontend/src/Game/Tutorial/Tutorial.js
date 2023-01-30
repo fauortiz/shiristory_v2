@@ -58,7 +58,7 @@ export default function Tutorial({isCompact, toggleTutorial}) {
                 <div className="shiristory-logo">SHIRISTORY</div>
                 <div className="tutorial-header">About the Game</div>
                 <div className="line-break"></div>
-                <p className="tutorial-rules">Created by Francis Ortiz for CS50 Web.</p>
+                <p className="tutorial-rules about">Shiristory is designed and developed by Francis Ortiz.</p>
                 <div className="line-break"></div>
                 <button className="bouncy-button" onClick={()=>setTutorialPage('index')}>Back</button>
             </div>

@@ -57,6 +57,11 @@
 .tutorial-page.show {
     display: block;
 }
+.about {
+    font-size: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    margin-right: 1rem;
+}
 
 .button-flex {
     display: flex;
@@ -83,4 +88,5 @@
 .bouncy-button.small {
     margin-top: 1rem;
     font-size: 0.8rem;
+    color: #a0a0a0;
 }
