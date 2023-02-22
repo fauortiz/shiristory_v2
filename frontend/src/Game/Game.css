@@ -229,8 +229,8 @@
     opacity: 1;
 }
 .tutorial-wrapper.hide {
-    z-index: -80;
     opacity: 0;
+    transform: scale(0);
 }
 .tutorial-closer {
     z-index: 799;
