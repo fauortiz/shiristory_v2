@@ -75,6 +75,8 @@
     right: 0px;
     z-index: 801;
     padding: 0.5em 0.9em;
+    background-color: #ff0e0e;
+    border-radius: 17px;
 }
 .line-break {
     height: 1.75rem;
